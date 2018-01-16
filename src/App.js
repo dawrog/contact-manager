@@ -34,9 +34,18 @@ function ContactsList() {
   return (
     <div>
       <div class="list-group text-center">
-          <a href="#" class="list-group-item"><p>Matt</p> Java Developer</a>
-          <a href="#" class="list-group-item"><p>Stephan</p> UX Design</a>
-          <a href="#" class="list-group-item"><p>Maria</p> Wordpress Developer</a>
+          <a href="#" class="list-group-item">
+          <img className="logo"
+            src="https://static.intercomassets.com/avatars/1226266/square_128/avatar-1494954662.png"/>
+            <p>Matt</p> Java Developer</a>
+          <a href="#" class="list-group-item">
+          <img className="logo"
+            src="https://78.media.tumblr.com/avatar_37cec57dd00d_128.pnj"/>
+          <p>Stephan</p> UX Design</a>
+          <a href="#" class="list-group-item">
+          <img className="logo"
+            src="https://78.media.tumblr.com/avatar_175b5e93cda0_128.pnj"/>
+          <p>Maria</p> Wordpress Developer</a>
       </div>
     </div>
   );
