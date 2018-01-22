@@ -30,6 +30,31 @@ function AppHeader() {
 	);
 }
 
+function ClickCounter() {
+	return (
+		<div className="text-center">  
+			
+			<label for="qty"><abbr title="Quantity">Qty</abbr></label>
+			<input id="qty" value="0" />
+			<button id="down" onclick="modify_qty(-1)">-1</button>
+			<button id="up" onclick="modify_qty(1)">+1</button>
+		</div>
+	);			
+}
+
+function CounterLogic(  { val } ) {
+	var qty = document.getElementById("qty").value;
+	var new_qty = parseInt(qty,10) + val;
+		
+	if (new_qty < 0) {
+		new_qty = 0;
+	}
+		
+	document.getElementById("qty").value = new_qty;
+	return new_qty; 
+
+}
+
 function ContactsList() {
 	return (
 		<div>
@@ -86,6 +111,7 @@ function App() {
 		<div className="App">
 			<AppHeader />
 			<ContactsList />
+			<ClickCounter />
 		</div>
       
 	);
