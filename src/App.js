@@ -30,29 +30,44 @@ function AppHeader() {
 	);
 }
 
-function ClickCounter() {
-	return (
-		<div className="text-center">  
-			
-			<label for="qty"><abbr title="Quantity">Qty</abbr></label>
-			<input id="qty" value="0" />
-			<button id="down" onclick="modify_qty(-1)">-1</button>
-			<button id="up" onclick="modify_qty(1)">+1</button>
-		</div>
-	);			
-}
-
-function CounterLogic(  { val } ) {
-	var qty = document.getElementById("qty").value;
-	var new_qty = parseInt(qty,10) + val;
-		
-	if (new_qty < 0) {
-		new_qty = 0;
+class ClickCounter extends React.Component {
+	constructor() {
+		super();
+		this.state = {counter: 0};
 	}
-		
-	document.getElementById("qty").value = new_qty;
-	return new_qty; 
-
+	render() {
+		return (
+			<div className="text-center">
+				<output>{this.state.counter}</output>
+				<button onClick={this.increment.bind(this)}>+1</button>
+				<button onClick={this.decrement.bind(this)}>-1</button>
+				
+				<output>{this.state.sum}</output>
+				<button onClick={this.sumClick.bind(this)}>Suma kliknięć</button>
+				<button onClick={this.doubleClick.bind(this)}>Podwójne kliknięcia</button>
+			</div>
+		);	
+	}	
+	increment() {
+		this.setState({
+			counter: this.state.counter + 1
+		});
+	}	
+	decrement() {
+		this.setState({
+			counter: this.state.counter - 1
+		});
+	}
+	doubleClick() {
+		this.setState({
+			counter: this.state.counter + 2
+		});
+	}
+	sumClick() {
+		this.setState({
+			sum: this.state.counter + 1 + this.state.counter - 1 + this.state.counter + 2
+		});
+	}
 }
 
 function ContactsList() {
@@ -106,15 +121,16 @@ function UserAvatar( { login } ) {
 	);
 }
 
-function App() {
-	return (
-		<div className="App">
-			<AppHeader />
-			<ContactsList />
-			<ClickCounter />
-		</div>
-      
-	);
+class App extends React.Component {
+	render() {
+		return (
+			<div className="App">
+				<AppHeader />
+				<ContactsList />
+				<ClickCounter />
+			</div>
+		);
+	}
 }
 
 export default App;
