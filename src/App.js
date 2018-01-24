@@ -34,6 +34,8 @@ class ClickCounter extends React.Component {
 	constructor() {
 		super();
 		this.state = {counter: 0};
+		this.state = {double: 0};
+		this.state = {sum: 0};
 	}
 	render() {
 		return (
@@ -44,6 +46,7 @@ class ClickCounter extends React.Component {
 				
 				<output>{this.state.sum}</output>
 				<button onClick={this.sumClick.bind(this)}>Suma kliknięć</button>
+				<output>{this.state.double}</output>
 				<button onClick={this.doubleClick.bind(this)}>Podwójne kliknięcia</button>
 			</div>
 		);	
@@ -60,12 +63,12 @@ class ClickCounter extends React.Component {
 	}
 	doubleClick() {
 		this.setState({
-			counter: this.state.counter + 2
+			double: this.state.double + 2
 		});
 	}
 	sumClick() {
 		this.setState({
-			sum: this.state.counter + 1 + this.state.counter - 1 + this.state.counter + 2
+			sum: this.state.counter + 1 + this.state.counter - 1 + this.state.double + 2
 		});
 	}
 }
