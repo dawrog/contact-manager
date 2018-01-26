@@ -30,6 +30,34 @@ function AppHeader() {
 	);
 }
 
+constructor(){
+	super();
+	this.state = {
+	name: "",
+	surName: ""
+	};
+	}
+	
+	output(){
+	this.setState (() => {
+	return { 
+	name: this.refs.name.value,
+	surName: this.refs.surName.value
+	}
+	})
+	}
+	
+	render(){
+	return (
+	<div>
+	<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
+	<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
+	<output> {this.state.name} {this.state.surName} </output>
+	</div>
+	);
+	}
+	}
+	
 class ClickCounter extends React.Component {
 	constructor() {
 		super();
@@ -37,6 +65,7 @@ class ClickCounter extends React.Component {
 			doubleClick: 0,
 			totalCount: 0};
 	}
+
 	render() {
 		return (
 			<div className="text-center">
