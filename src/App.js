@@ -30,33 +30,35 @@ function AppHeader() {
 	);
 }
 
+function NameCaller() {
+
 constructor(){
 	super();
-	this.state = {
-	name: "",
-	surName: ""
+		this.state = {
+		name: "",
+		surName: ""
 	};
-	}
+}
 	
-	output(){
+output(){
 	this.setState (() => {
-	return { 
-	name: this.refs.name.value,
-	surName: this.refs.surName.value
-	}
+		return { 
+			name: this.refs.name.value,
+			surName: this.refs.surName.value
+		}
 	})
-	}
+}
 	
-	render(){
+render(){
 	return (
-	<div>
-	<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
-	<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
-	<output> {this.state.name} {this.state.surName} </output>
-	</div>
+		<div>
+		<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
+		<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
+		<output> {this.state.name} {this.state.surName} </output>
+		</div>
 	);
 	}
-	}
+}
 	
 class ClickCounter extends React.Component {
 	constructor() {
