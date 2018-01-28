@@ -30,33 +30,31 @@ function AppHeader() {
 	);
 }
 
-function NameCaller() {
-
-constructor(){
-	super();
+class NameCaller extends React.Component {
+	constructor(){
+		super();
 		this.state = {
-		name: "",
-		surName: ""
-	};
-}
+			name: "",
+			surName: ""};
+	}
 	
-output(){
-	this.setState (() => {
-		return { 
-			name: this.refs.name.value,
-			surName: this.refs.surName.value
-		}
-	})
-}
+	output(){
+		this.setState (() => {
+			return { 
+				name: this.refs.name.value,
+				surName: this.refs.surName.value
+			}
+		})
+	}
 	
-render(){
-	return (
-		<div>
-		<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
-		<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
-		<output> {this.state.name} {this.state.surName} </output>
-		</div>
-	);
+	render(){
+		return (
+			<div>
+				<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
+				<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
+				<output> {this.state.name} {this.state.surName} </output>
+			</div>
+		);
 	}
 }
 	
