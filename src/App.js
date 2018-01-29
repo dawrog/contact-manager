@@ -43,8 +43,8 @@ class NameCaller extends React.Component {
 			return { 
 				name: this.refs.name.value,
 				surName: this.refs.surName.value
-			}
-		})
+			};
+		});
 	}
 	
 	render(){
