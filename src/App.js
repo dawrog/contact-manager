@@ -69,7 +69,6 @@ class ClickCounter extends React.Component {
 	render() {
 		return (
 			<div className="text-center">
-				
 				<button onClick={this.increment.bind(this)}>+1</button>
 				<div onDoubleClick={this.doubleClickMachine.bind(this)}>
 					<output>Kliknięcia: {this.state.counter}</output>
@@ -80,6 +79,7 @@ class ClickCounter extends React.Component {
 			</div>
 		);	
 	}	
+
 	increment() {
 		this.setState({
 			counter: this.state.counter + 1,
@@ -92,14 +92,12 @@ class ClickCounter extends React.Component {
 			totalCount: this.state.totalCount + 1
 		});
 	}
-
 	doubleClickMachine() {
 		this.setState({
 			doubleClick: this.state.doubleClick + 1
 		});
 	}
 }
-
 
 function ContactsList() {
 	return (
