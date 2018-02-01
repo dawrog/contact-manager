@@ -36,28 +36,26 @@ class NameCaller extends React.Component {
 		this.state = {
 			name: "",
 			surName: ""};
+
+		this.output = this.output.bind(this);
 	}
-	
-	output(){
-		this.setState (() => {
-			return { 
-				name: this.refs.name.value,
-				surName: this.refs.surName.value
-			};
-		});
+
+	output(event) {
+		this.setState({[event.target.placeholder]: event.target.value });
 	}
-	
+
 	render(){
 		return (
-			<div>
-				<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
-				<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
+			<div className="text-center">
+				<input type="text" placeholder="Name" oninput="{this.output.bind(this)}"></input>
+				<input type="text" placeholder="Surname" oninput="{this.output.bind(this)}"></input>
 				<output> {this.state.name} {this.state.surName} </output>
 			</div>
 		);
 	}
 }
-	
+
+
 class ClickCounter extends React.Component {
 	constructor() {
 		super();
@@ -75,6 +73,7 @@ class ClickCounter extends React.Component {
 					<output>Suma kliknięć: {this.state.totalCount}</output>
 					<output>Podwójne kliknięcia: {this.state.doubleClick}</output>
 				</div>
+
 				<button onClick={this.decrement.bind(this)}>-1</button>	
 			</div>
 		);	
@@ -98,115 +97,6 @@ class ClickCounter extends React.Component {
 		});
 	}
 }
-
-class Parent extends React.Component {
-	constructor(props) {
-	  super(props);
-  
-	  this.state = {
-		input: null,
-		forwardValue: null
-	  }
-  
-	  this.handleClick = this.handleClick.bind(this);
-	  this.handleChange = this.handleChange.bind(this);
-	}
-  
-	handleChange(event) {
-	  this.setState({ input: event.target.value });
-	}
-  
-	handleClick() {
-	  this.setState({ forwardValue: this.state.input });
-	}
-  
-	render() {
-	  return(
-		<div>
-		  <input onchange="{this.handleChange}" type="number"/>
-		  <button onclick="{this.handleClick}">Propagate to child</button>
-		  {this.state.forwardValue && <child value="{this.state.forwardValue}/">
-		  </div> 
-	  );
-	}
-  }
-
-  class Parent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      input: null,
-      forwardValue: null
-    }
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ input: event.target.value });
-  }
-
-  handleClick() {
-    this.setState({ forwardValue: this.state.input });
-  }
-
-  render() {
-    return(
-      <div>
-        <input onchange="{this.handleChange}" type="number"/>
-        <button onclick="{this.handleClick}">Propagate to child</button>
-        {this.state.forwardValue && <child value="{this.state.forwardValue}/">}
-      </div>
-    );
-  }
-}
-
-class Child extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fromParent: Number(props.value),
-      current: Number(props.value),
-    }
-
-    this.handleIncrement = this.handleIncrement.bind(this);
-    this.handleDecrement = this.handleDecrement.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value != this.state.fromParent) {
-      this.setState({
-        fromParent: Number(nextProps.value),
-        current: Number(nextProps.value),
-      })
-    }
-  }
-
-  handleIncrement() {
-    this.setState({ current: this.state.current + 1 })
-  }
-
-  handleDecrement() {
-    this.setState({ current: this.state.current - 1 })
-  }
-
-  render() {
-    return(
-      <div>
-        <label>{this.state.current}</label>
-        <button onclick="{this.handleIncrement}">+</button>
-        <button onclick="{this.handleDecrement}">-</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM
-  
-
 
 function ContactsList() {
 	return (
@@ -263,7 +153,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<AppHeader />
+				<AppHeader/>
+				<NameCaller />
 				<ContactsList />
 				<ClickCounter />
 			</div>
