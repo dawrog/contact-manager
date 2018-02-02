@@ -2,7 +2,6 @@ import * as React from "react";
 import { Component } from "react";
 import "./App.css";
 
-
 function AppHeader() {
 	return (
 		<div>
@@ -31,16 +30,16 @@ function AppHeader() {
 }
 
 class NameCaller extends React.Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
-			name: "",
-			surName: ""};
-
-		this.output = this.output.bind(this);
+			Name: "",
+			Surname: "",
+		};
+		this.outPut = this.outPut.bind(this);
 	}
 
-	output(event) {
+	outPut(event) {
 		this.setState({[event.target.placeholder]: event.target.value });
 	}
 
@@ -49,13 +48,12 @@ class NameCaller extends React.Component {
 			<div className="text-center">
 				<input type="text" placeholder="Name" oninput="{this.output.bind(this)}"></input>
 				<input type="text" placeholder="Surname" oninput="{this.output.bind(this)}"></input>
-				<output> {this.state.name} {this.state.surName} </output>
+				<output> {this.state.Name} {this.state.Surname} </output>
 			</div>
 		);
 	}
-}
-
-
+} 
+   
 class ClickCounter extends React.Component {
 	constructor() {
 		super();
