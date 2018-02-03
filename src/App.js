@@ -29,6 +29,79 @@ function AppHeader() {
 	);
 }
 
+class Parent extends React.Component {
+	constructor(props) {
+		super(props);
+   
+	  this.state = {
+			input: null,
+			forwardValue: null
+	  }
+   
+	  this.handleClick = this.handleClick.bind(this);
+	  this.handleChange = this.handleChange.bind(this);
+	}
+   
+	handleChange(event) {
+	  this.setState({ input: event.target.value });
+	}
+   
+	handleClick() {
+	  this.setState({ forwardValue: this.state.input });
+	}
+   
+	render() {
+	  return(
+			<div>
+		  <input onChange={this.handleChange} type="number" />
+		  <button onClick={this.handleClick}>Propagate to child</button>
+		  {this.state.forwardValue && <Child value={this.state.forwardValue}/>}
+			</div>
+	  );
+	}
+}
+   
+class Child extends React.Component {
+	constructor(props) {
+	  super(props);
+   
+	  this.state = {
+			fromParent: Number(props.value),
+			current: Number(props.value),
+	  }
+   
+	  this.handleIncrement = this.handleIncrement.bind(this);
+	  this.handleDecrement = this.handleDecrement.bind(this);
+	}
+   
+	componentWillReceiveProps(nextProps) {
+	  if (nextProps.value != this.state.fromParent) {
+			this.setState({
+		  fromParent: Number(nextProps.value),
+		  current: Number(nextProps.value),
+			})
+	  }
+	}
+   
+	handleIncrement() {
+	  this.setState({ current: this.state.current + 1 })
+	}
+   
+	handleDecrement() {
+	  this.setState({ current: this.state.current - 1 })
+	}
+   
+	render() {
+	  return(
+			<div>
+		  <label>{this.state.current}</label>
+		  <button onClick={this.handleIncrement}>+</button>
+		  <button onClick={this.handleDecrement}>-</button>
+			</div>
+	  );
+	}
+}
+
 class NameCaller extends React.Component {
 	constructor(props){
 		super(props);
