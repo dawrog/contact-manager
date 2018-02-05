@@ -31,7 +31,7 @@ function AppHeader() {
 
 const allUsers = ["Michal", "Kasia", "Jacek", "Marta", "Tomek", "Ania"];
 
-class App extends React.Component {
+class FormFilter extends React.Component {
 	constructor() {
 		super();    
     
@@ -272,7 +272,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<AppHeader/>
+				<FormFilter />
+				<Parent />
+				<Child />
+				<AppHeader />
 				<NameCaller />
 				<ContactsList />
 				<ClickCounter />
