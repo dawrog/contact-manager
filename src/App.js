@@ -151,30 +151,25 @@ class Child extends React.Component {
 }
 
 class NameCaller extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.state = {
-			Name: "",
-			Surname: "",
-		};
-		this.outPut = this.outPut.bind(this);
+		this.state = {fname: "",
+			lname: ""};
 	}
 
-	outPut(event) {
-		this.setState({[event.target.placeholder]: event.target.value });
-	}
-
-	render(){
+	render() {
 		return (
 			<div className="text-center">
-				<input type="text" placeholder="Name" oninput="{this.output.bind(this)}"></input>
-				<input type="text" placeholder="Surname" oninput="{this.output.bind(this)}"></input>
-				<output> {this.state.Name} {this.state.Surname} </output>
+				First name: <input type="text" oninput={this.output.bind(this)} />
+				<output>{this.state.fname}</output>
+				Last name: <input type="text" oninput={this.output.bind(this)} />
+				<output>{this.state.lname}</output>
 			</div>
 		);
 	}
-} 
-   
+
+}
+
 class ClickCounter extends React.Component {
 	constructor() {
 		super();
@@ -272,9 +267,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<FormFilter />
-				<Parent />
-				<Child />
 				<AppHeader />
 				<NameCaller />
 				<ContactsList />
