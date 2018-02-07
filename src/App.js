@@ -42,10 +42,10 @@ class FormFilter extends React.Component {
 
 	filterUsers(e) {
 		const text = e.currentTarget.value;
-		const filteredUsers = this.getFilteredUsersForText(text);
-		this.setState({
-			filteredUsers
-		});
+		this.getFilteredUsersForText(text).then(
+		filteredUsers =>
+		this.setState({filteredUsers:filteredUsers})
+		).catch(err => console.log(err));
 	}
   
 	getFilteredUsersForText(text) {
