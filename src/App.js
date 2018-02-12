@@ -29,6 +29,19 @@ function AppHeader() {
 	);
 }
 
+class Parent extends React.Component {
+	constructor(props) {
+	  super(props);
+	}
+  
+}
+
+class Child extends React.Component {
+	constructor(props) {
+	  super(props);
+	}	 
+}
+
 class NameCaller extends React.Component {
 	constructor(props) {
 		super(props);
