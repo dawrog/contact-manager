@@ -46,15 +46,15 @@ class NameCaller extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {fname: "",
-			lname: ""};
+			lname: "",};
 	}
 
 	render() {
 		return (
 			<div className="text-center">
-				First name: <input type="text" oninput={this.output.bind(this)} />
+				<label>First name:</label> <input type="text" oninput={this.output.bind(this)} />
 				<output>{this.state.fname}</output>
-				Last name: <input type="text" oninput={this.output.bind(this)} />
+				<label>Last name:</label> <input type="text" oninput={this.output.bind(this)} />
 				<output>{this.state.lname}</output>
 			</div>
 		);
