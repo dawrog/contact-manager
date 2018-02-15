@@ -32,14 +32,24 @@ function AppHeader() {
 class Parent extends React.Component {
 	constructor(props) {
 		super(props);
-	}
+	
+		this.state = {
+			input: null,
+			forwardValue: null
+		};
   
+	}
 }
 
 class Child extends React.Component {
 	constructor(props) {
 		super(props);
-	}	 
+	
+		this.state = {
+			fromParent: Number(props.value),
+			current: Number(props.value),
+		}; 
+	}
 }
 
 class NameCaller extends React.Component {
@@ -52,11 +62,10 @@ class NameCaller extends React.Component {
 	render() {
 		return (
 			<div className="text-center">
-				<label for="…">First name:</label> <input oninput=                    	{this.onInputNameChange.bind(this)}/>		              	
-				<output>{this.state.fname}</output>
-				<label >Last name:</label> <input oninput=
+				<label for="…">First name:</label> <input oninput=                    	{this.onInputNameChange.bind(this)}/>		                      {this.state.fname}
+				<label for="…">Last name:</label> <input oninput=
 					{this.onInputNameChange.bind(this)}/>
-				<output>{this.state.lname}</output>
+				{this.state.lname}
 			</div>
 		);
 	}
