@@ -52,6 +52,56 @@ class Child extends React.Component {
 	}
 }
 
+class Test extends React.Component {
+	constructor(props) {
+		
+		super(props);
+		this.state = { dateVisible: true };
+	}
+    
+	onButtonClick() {
+		this.setState(state => ({ dateVisible: !state.dateVisible }));
+	}
+    
+	render() {
+		return (
+			<div>
+				<button onClick={this.onButtonClick.bind(this)}>Kliknij</button>
+				{this.state.dateVisible && <DateComponent />}
+			</div>
+		);
+	}
+}
+  
+class DateComponent extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			date: new Date()
+		};
+	}
+  
+	componentDidMount() {
+		this.timerId = window.setInterval(this.updateDate.bind(this), 1000);
+	}
+  
+	componentWillUnmount() {
+		window.clearInterval(this.timerId);
+	}
+  
+	updateDate() {
+		this.setState({
+			date: new Date()
+		});
+	}
+  
+	render() {
+		const dateStr = this.state.date && this.state.date.toString();
+		return <time>{dateStr}</time>;
+	}
+}
+
 class NameCaller extends React.Component {
 	constructor(props) {
 		super(props);
@@ -79,6 +129,36 @@ class NameCaller extends React.Component {
 
 }
 
+class NameForm extends React.Component {
+
+	constructor(){
+		super();
+		this.state = {
+			name: "",
+			surName: ""
+		};
+	}
+	
+	output(){
+		this.setState (() => {
+			return { 
+				name: this.refs.name.value,
+				surName: this.refs.surName.value
+			};
+		});
+	}
+	
+	render(){
+		return (
+			<div>
+				<output> {this.state.name} {this.state.surName} </output>
+				<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
+				<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
+			</div>
+		);
+	}
+}
+
 class ClickCounter extends React.Component {
 	constructor() {
 		super();
@@ -96,7 +176,6 @@ class ClickCounter extends React.Component {
 					<output>Suma kliknięć: {this.state.totalCount}</output>
 					<output>Podwójne kliknięcia: {this.state.doubleClick}</output>
 				</div>
-
 				<button onClick={this.decrement.bind(this)}>-1</button>	
 			</div>
 		);	
@@ -176,8 +255,11 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
+				<Test />
+				<DateComponent />
 				<AppHeader />
 				<NameCaller />
+				<NameForm />
 				<ContactsList />
 				<ClickCounter />
 			</div>
