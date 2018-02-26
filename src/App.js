@@ -80,10 +80,12 @@ class DateComponent extends React.Component {
 		this.state = {
 			date: new Date()
 		};
+
+		this.updateDate = this.updateDate.bind(this);
 	}
   
 	componentDidMount() {
-		this.timerId = window.setInterval(this.updateDate.bind(this), 1000);
+		this.timerId = window.setInterval(this.updateDate, 1000);
 	}
   
 	componentWillUnmount() {
@@ -107,14 +109,16 @@ class NameCaller extends React.Component {
 		super(props);
 		this.state = {fname: "",
 			lname: ""};
+	
+		this.onInputNameChange = this.onInputNameChange.bind(this);
 	}
 
 	render() {
 		return (
 			<div className="text-center">
-				<label for="…">First name:</label> <input oninput=                    	{this.onInputNameChange.bind(this)}/>		                      {this.state.fname}
+				<label for="…">First name:</label> <input oninput=                    	{this.onInputNameChange}/>		                      {this.state.fname}
 				<label for="…">Last name:</label> <input oninput=
-					{this.onInputNameChange.bind(this)}/>
+					{this.onInputNameChange}/>
 				{this.state.lname}
 			</div>
 		);
@@ -137,6 +141,8 @@ class NameForm extends React.Component {
 			name: "",
 			surName: ""
 		};
+		
+		this.output = this.output.bind(this);
 	}
 	
 	output(){
@@ -152,8 +158,8 @@ class NameForm extends React.Component {
 		return (
 			<div>
 				<output> {this.state.name} {this.state.surName} </output>
-				<input type="text" placeholder="Name" ref="name" oninput="{this.output.bind(this)}"></input>
-				<input type="text" placeholder="Surname" ref="surName" oninput="{this.output.bind(this)}"></input>
+				<input type="text" placeholder="Name" ref="name" oninput="{this.output}"></input>
+				<input type="text" placeholder="Surname" ref="surName" oninput="{this.output}"></input>
 			</div>
 		);
 	}
@@ -165,18 +171,24 @@ class ClickCounter extends React.Component {
 		this.state = {counter: 0,
 			doubleClick: 0,
 			totalCount: 0};
+
+		this.increment = this.increment.bind(this);
+		this.decrement = this.decrement.bind(this);
+		this.doubleClickMachine = this.doubleClickMachine.bind(this);
 	}
+
+	
 
 	render() {
 		return (
 			<div className="text-center">
-				<button onClick={this.increment.bind(this)}>+1</button>
-				<div onDoubleClick={this.doubleClickMachine.bind(this)}>
+				<button onClick={this.increment}>+1</button>
+				<div onDoubleClick={this.doubleClickMachine}>
 					<output>Kliknięcia: {this.state.counter}</output>
 					<output>Suma kliknięć: {this.state.totalCount}</output>
 					<output>Podwójne kliknięcia: {this.state.doubleClick}</output>
 				</div>
-				<button onClick={this.decrement.bind(this)}>-1</button>	
+				<button onClick={this.decrement}>-1</button>	
 			</div>
 		);	
 	}	
