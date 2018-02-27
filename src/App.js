@@ -44,7 +44,6 @@ class Parent extends React.Component {
 class Child extends React.Component {
 	constructor(props) {
 		super(props);
-	
 		this.state = {
 			fromParent: Number(props.value),
 			current: Number(props.value),
@@ -54,19 +53,18 @@ class Child extends React.Component {
 
 class Test extends React.Component {
 	constructor(props) {
-		
 		super(props);
 		this.state = { dateVisible: true };
 	}
     
-	onButtonClick() {
+	onButtonClick = () => {
 		this.setState(state => ({ dateVisible: !state.dateVisible }));
 	}
     
 	render() {
 		return (
 			<div>
-				<button onClick={this.onButtonClick.bind(this)}>Kliknij</button>
+				<button onClick={this.onButtonClick}>Kliknij</button>
 				{this.state.dateVisible && <DateComponent />}
 			</div>
 		);
@@ -76,12 +74,9 @@ class Test extends React.Component {
 class DateComponent extends React.Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			date: new Date()
 		};
-
-		this.updateDate = this.updateDate.bind(this);
 	}
   
 	componentDidMount() {
@@ -92,7 +87,7 @@ class DateComponent extends React.Component {
 		window.clearInterval(this.timerId);
 	}
   
-	updateDate() {
+	updateDate = () => {
 		this.setState({
 			date: new Date()
 		});
@@ -109,8 +104,6 @@ class NameCaller extends React.Component {
 		super(props);
 		this.state = {fname: "",
 			lname: ""};
-	
-		this.onInputNameChange = this.onInputNameChange.bind(this);
 	}
 
 	render() {
@@ -124,7 +117,7 @@ class NameCaller extends React.Component {
 		);
 	}
 
-	onInputNameChange() {
+	onInputNameChange = () => {
 		this.setState({
 			fname: this.state.fname.target.value,
 			lname: this.state.lname.target.value
@@ -134,18 +127,15 @@ class NameCaller extends React.Component {
 }
 
 class NameForm extends React.Component {
-
 	constructor(){
 		super();
 		this.state = {
 			name: "",
 			surName: ""
 		};
-		
-		this.output = this.output.bind(this);
 	}
-	
-	output(){
+
+	output = () =>{
 		this.setState (() => {
 			return { 
 				name: this.refs.name.value,
@@ -171,13 +161,7 @@ class ClickCounter extends React.Component {
 		this.state = {counter: 0,
 			doubleClick: 0,
 			totalCount: 0};
-
-		this.increment = this.increment.bind(this);
-		this.decrement = this.decrement.bind(this);
-		this.doubleClickMachine = this.doubleClickMachine.bind(this);
 	}
-
-	
 
 	render() {
 		return (
@@ -193,19 +177,19 @@ class ClickCounter extends React.Component {
 		);	
 	}	
 
-	increment() {
+	increment = () => {
 		this.setState({
 			counter: this.state.counter + 1,
 			totalCount: this.state.totalCount + 1
 		});
 	}	
-	decrement() {
+	decrement = () => {
 		this.setState({
 			counter: this.state.counter - 1,
 			totalCount: this.state.totalCount + 1
 		});
 	}
-	doubleClickMachine() {
+	doubleClickMachine = () => {
 		this.setState({
 			doubleClick: this.state.doubleClick + 1
 		});
