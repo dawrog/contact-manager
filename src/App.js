@@ -35,20 +35,41 @@ class Parent extends React.Component {
 	
 		this.state = {
 			input: null,
-			forwardValue: null
+			someNumbah: null
 		};
-  
 	}
-}
+		onButtonClick = () => {
+			this.setState(state => ({ someNumbah: state.incrementNumbah }));
+		}
+		
+		render() {
+			return (
+				<div>
+					<button onClick={this.onButtonClick}>Kliknij</button>
+					{this.state.someNumbah && <Child />}
+				</div>
+			);
+		}
+	}
+	  
 
 class Child extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			fromParent: Number(props.value),
-			current: Number(props.value),
+			parentNumbah: Number(props.value),
+			currentNumbah: Number(props.value),
 		}; 
+
+	const { login, name, department } = this.props
 	}
+
+	incrementNumbah = () => {
+		this.setState({
+			counter: this.state.counter + 1,
+			totalCount: this.state.totalCount + 1
+		});
+	}	
 }
 
 class Test extends React.Component {
@@ -135,7 +156,7 @@ class NameForm extends React.Component {
 		};
 	}
 
-	output = () =>{
+	output = () => {
 		this.setState (() => {
 			return { 
 				name: this.refs.name.value,
