@@ -35,13 +35,22 @@ class Parent extends React.Component {
 	
 		this.state = {
 			input: null,
-			someNumbah: null
+			startingNumbah: null
 		};
 	}
-		onButtonClick = () => {
-			this.setState(state => ({ someNumbah: state.incrementNumbah }));
-		}
+
+		input = () => {
+			this.setState({
+				input: this.state.input.target.value
+			});
+		}	
 		
+		onButtonClick = () => {
+			this.setState(state => ({ 
+				someNumbah: state.incrementNumbah 
+			}));
+		}
+
 		render() {
 			return (
 				<div>
@@ -52,7 +61,6 @@ class Parent extends React.Component {
 		}
 	}
 	  
-
 class Child extends React.Component {
 	constructor(props) {
 		super(props);
@@ -61,13 +69,24 @@ class Child extends React.Component {
 			currentNumbah: Number(props.value),
 		}; 
 
-	const { login, name, department } = this.props
+	const { input } = this.props
 	}
+
+	componentWillReceiveProps = () => {
+		this.setState({
+			
+		});
+	}	
 
 	incrementNumbah = () => {
 		this.setState({
-			counter: this.state.counter + 1,
-			totalCount: this.state.totalCount + 1
+			currentNumbah: this.state.currentNumbah + 1
+		});
+	}	
+
+	decrementNumbah = () => {
+		this.setState({
+			currentNumbah: this.state.currentNumbah - 1
 		});
 	}	
 }
