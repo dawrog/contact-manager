@@ -91,54 +91,6 @@ class Child extends React.Component {
 	}	
 }
 
-class Test extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { dateVisible: true };
-	}
-    
-	onButtonClick = () => {
-		this.setState(state => ({ dateVisible: !state.dateVisible }));
-	}
-    
-	render() {
-		return (
-			<div>
-				<button onClick={this.onButtonClick}>Kliknij</button>
-				{this.state.dateVisible && <DateComponent />}
-			</div>
-		);
-	}
-}
-  
-class DateComponent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			date: new Date()
-		};
-	}
-  
-	componentDidMount() {
-		this.timerId = window.setInterval(this.updateDate, 1000);
-	}
-  
-	componentWillUnmount() {
-		window.clearInterval(this.timerId);
-	}
-  
-	updateDate = () => {
-		this.setState({
-			date: new Date()
-		});
-	}
-  
-	render() {
-		const dateStr = this.state.date && this.state.date.toString();
-		return <time>{dateStr}</time>;
-	}
-}
-
 class NameCaller extends React.Component {
 	constructor(props) {
 		super(props);
