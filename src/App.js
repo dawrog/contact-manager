@@ -118,35 +118,6 @@ class NameCaller extends React.Component {
 
 }
 
-class NameForm extends React.Component {
-	constructor(){
-		super();
-		this.state = {
-			name: "",
-			surName: ""
-		};
-	}
-
-	output = () => {
-		this.setState (() => {
-			return { 
-				name: this.refs.name.value,
-				surName: this.refs.surName.value
-			};
-		});
-	}
-	
-	render(){
-		return (
-			<div>
-				<output> {this.state.name} {this.state.surName} </output>
-				<input type="text" placeholder="Name" ref="name" oninput="{this.output}"></input>
-				<input type="text" placeholder="Surname" ref="surName" oninput="{this.output}"></input>
-			</div>
-		);
-	}
-}
-
 class ClickCounter extends React.Component {
 	constructor() {
 		super();
