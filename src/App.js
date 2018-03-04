@@ -47,7 +47,7 @@ class Parent extends React.Component {
 		
 		onButtonClick = () => {
 			this.setState(state => ({ 
-				someNumbah: state.incrementNumbah 
+				someNumbah: state.startingNumbah 
 			}));
 		}
 
@@ -101,8 +101,8 @@ class NameCaller extends React.Component {
 	render() {
 		return (
 			<div className="text-center">
-				<label for="…">First name:</label> <input oninput=                    	{this.onInputNameChange}/>		                      {this.state.fname}
-				<label for="…">Last name:</label> <input oninput=
+				<label htmlFor="…">First name:</label> <input oninput=                    	{this.onInputNameChange}/>		                      {this.state.fname}
+				<label htmlFor="…">Last name:</label> <input oninput=
 					{this.onInputNameChange}/>
 				{this.state.lname}
 			</div>
@@ -214,11 +214,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<Test />
-				<DateComponent />
 				<AppHeader />
+				<Parent />
 				<NameCaller />
-				<NameForm />
 				<ContactsList />
 				<ClickCounter />
 			</div>
