@@ -19,7 +19,7 @@ function AppHeader() {
 
 					<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul className="nav navbar-nav">
-							<li className="btn btn-default"><a href="#">Add<span class="sr-only">(current)</span></a></li>
+							<li className="btn btn-default"><a href="#">Add<span className="sr-only">(current)</span></a></li>
 							<li className="btn btn-default"><a href="#">Link</a></li>
 						</ul>
 					</div>
@@ -54,7 +54,7 @@ class Parent extends React.Component {
 		render() {
 			return (
 				<div>
-					<button onClick={this.onButtonClick}>Kliknij</button>
+					<button onClick={this.onButtonClick}><input onInput={this.input}/>Kliknij</button>
 					{this.state.someNumbah && <Child />}
 				</div>
 			);
