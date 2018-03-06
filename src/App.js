@@ -32,30 +32,30 @@ function AppHeader() {
 class Parent extends React.Component {
 	constructor(props) {
 		super(props);
-	
 		this.state = {
 			input: null,
 			startingNumbah: null
 		};
 	}
 
-		input = () => {
+		inputChange = (action) => {
 			this.setState({
-				input: this.state.input.target.value
+				input: action.target.value
 			});
 		}	
 		
 		onButtonClick = () => {
 			this.setState(state => ({ 
-				someNumbah: state.startingNumbah 
+				addedValue: this.state.startingNumbah 
 			}));
 		}
 
 		render() {
 			return (
 				<div>
-					<button onClick={this.onButtonClick}><input onInput={this.input}/>Kliknij</button>
-					{this.state.someNumbah && <Child />}
+					<input onChange={this.inputChange} type="number"/>
+					<button onClick={this.onButtonClick}>Wyślij do Child</button>
+					{this.state.addedValue && <Child value={this.state.addedValue}/>}
 				</div>
 			);
 		}
@@ -66,16 +66,17 @@ class Child extends React.Component {
 		super(props);
 		this.state = {
 			parentNumbah: Number(props.value),
-			currentNumbah: Number(props.value),
+			currentNumbah: Number(props.value)
 		}; 
-
-	const { input } = this.props
 	}
 
-	componentWillReceiveProps = () => {
+	componentWillReceiveProps = (addedProps) => {
+	  if (nextProps.value != this.state.parentNumbah) {
 		this.setState({
-			
+			parentNumbah: Number(adddedProps.value),
+			currentNumbah: Number(addedProps.value)
 		});
+	  }
 	}	
 
 	incrementNumbah = () => {
@@ -88,7 +89,17 @@ class Child extends React.Component {
 		this.setState({
 			currentNumbah: this.state.currentNumbah - 1
 		});
-	}	
+	}
+
+	render() {
+		return (
+			<div>
+				{this.state.currentNumbah}
+				<button onClick={this.incrementNumbah}></button>
+				<button onClick={this.decrementNumbah}></button>
+			</div>
+		);
+	}
 }
 
 class NameCaller extends React.Component {
