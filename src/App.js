@@ -34,7 +34,7 @@ class Parent extends React.Component {
 		super(props);
 		this.state = {
 			input: null,
-			startingNumbah: null
+			addedValue: null
 		};
 	}
 
@@ -46,7 +46,7 @@ class Parent extends React.Component {
 		
 		onButtonClick = () => {
 			this.setState(state => ({ 
-				addedValue: this.state.startingNumbah 
+				addedValue: this.state.input
 			}));
 		}
 
@@ -71,9 +71,9 @@ class Child extends React.Component {
 	}
 
 	componentWillReceiveProps = (addedProps) => {
-	  if (nextProps.value != this.state.parentNumbah) {
+	  if (addedProps.value != this.state.parentNumbah) {
 		this.setState({
-			parentNumbah: Number(adddedProps.value),
+			parentNumbah: Number(addedProps.value),
 			currentNumbah: Number(addedProps.value)
 		});
 	  }
@@ -94,7 +94,7 @@ class Child extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.state.currentNumbah}
+				<output>{this.state.currentNumbah}</output>
 				<button onClick={this.incrementNumbah}></button>
 				<button onClick={this.decrementNumbah}></button>
 			</div>
