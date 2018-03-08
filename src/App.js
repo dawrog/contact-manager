@@ -29,6 +29,48 @@ function AppHeader() {
 	);
 }
 
+const allUsers = ['Stefan', 'Kunegunda', 'Rudolfa', 'Dawid'];
+
+class SearchForm extends React.Component { 
+	constructor(props) {
+		super(props);
+		this.state = {
+			filteredUsers: allUsers
+		
+		}	
+	}
+
+	filterUsers = (e) =>  {
+		const text = e.currentTarget.value;
+		const filteredUsers = this.getFilteredUsersForText(text)
+		this.setState({
+		  filteredUsers
+		});
+	  }
+
+	getFilteredUsersForText(text) {
+		return allUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
+	  }
+
+	render() {
+		return (
+			<div>
+				<input onInput={this.filterUsers} />
+        		<UsersList users={this.state.filteredUsers} />
+			</div>
+		);
+	}
+
+}
+
+const UsersList = ({ users }) => {
+	return (
+		<ul>
+			{users.map(user => <li key={user}>{user}</li>)}
+		</ul>
+	);
+};
+
 class Parent extends React.Component {
 	constructor(props) {
 		super(props);
