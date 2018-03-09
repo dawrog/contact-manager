@@ -270,6 +270,7 @@ class App extends React.Component {
 				<AppHeader />
 				<Parent />
 				<NameCaller />
+				<SearchForm />
 				<ContactsList />
 				<ClickCounter />
 			</div>
