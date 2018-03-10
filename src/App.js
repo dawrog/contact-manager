@@ -36,20 +36,27 @@ class SearchForm extends React.Component {
 		super(props);
 		this.state = {
 			filteredUsers: allUsers
-		
+
 		}	
 	}
-
+                               
 	filterUsers = (e) =>  {
 		const text = e.currentTarget.value;
-		const filteredUsers = this.getFilteredUsersForText(text)
-		this.setState({
-		  filteredUsers
+		this.getFilteredUsersForText(text).then(
+			filteredUsers =>
+			this.setState({filteredUsers:filteredUsers})
+			).catch(err => console.log(err));
+	}	
+		
+      
+	getFilteredUsersForText(text)  {
+		return new Promise(resolve => {
+		  const time = (Math.random() + 1) * 250;
+		  setTimeout(() => {
+			const filteredUsers = allUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()));
+			resolve(filteredUsers);
+		  }, time) ;
 		});
-	  }
-
-	getFilteredUsersForText(text) {
-		return allUsers.filter(user => user.toLowerCase().includes(text.toLowerCase()))
 	  }
 
 	render() {
