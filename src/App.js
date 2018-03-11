@@ -48,7 +48,6 @@ class SearchForm extends React.Component {
 			).catch(err => console.log(err));
 	}	
 		
-      
 	getFilteredUsersForText(text)  {
 		return new Promise(resolve => {
 		  const time = (Math.random() + 1) * 250;
@@ -219,7 +218,17 @@ class ClickCounter extends React.Component {
 	}
 }
 
-function ContactsList() {
+class ContactsList extends React.Component {
+	constructor() {
+		super();
+	
+		this.state = {
+		  filteredUsers: ContactItem.name,
+		  selectedUser: null 
+		};
+	  }
+	
+	render() {
 	return (
 		<div>
 			<div className="list-group text-center">
@@ -238,12 +247,18 @@ function ContactsList() {
 					name="Maria"
 					department="Wordpress Developer"
 				/>     
+				{this.state.selectedUser}
 			</div>
 		</div>
 	);
+  }
 }
 
-function ContactItem( { avatarLogin, name, department } ) {
+function ContactItem( { avatarLogin, name, department, selectedUser } ) {
+	this.setState({
+		selectedUser
+	  });
+
 	return (
 		<div className="item">
 			<a href="#" className="list-group-item">
