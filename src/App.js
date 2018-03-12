@@ -29,6 +29,45 @@ function AppHeader() {
 	);
 }
 
+class UserBox extends React.Component {
+	constructor() {
+	  super();
+  
+	  this.state = {
+		filteredUsers: allUsers,
+		selectedUser: null // tutaj
+	  };
+	}
+  
+	render() {
+	  return (
+		<div>
+		  {this.state.selectedUser}
+		  {/* … */}
+		</div>
+	  );
+	}
+  }
+
+  class UserChild extends React.Component {
+
+	onUserSelected = (selectedUser) => {
+		this.setState({
+		  selectedUser
+		});
+	  }
+
+	render() {
+		return (
+		  <div>
+			{/* … */}
+			<UsersList userSelected={this.onUserSelected} users={this.state.filteredUsers} />
+		  </div>
+		);
+	  }
+
+  }
+
 const allUsers = ['Stefan', 'Kunegunda', 'Rudolfa', 'Dawid'];
 
 class SearchForm extends React.Component { 
@@ -218,17 +257,8 @@ class ClickCounter extends React.Component {
 	}
 }
 
-class ContactsList extends React.Component {
-	constructor() {
-		super();
+function ContactsList() {
 	
-		this.state = {
-		  filteredUsers: ContactItem.name,
-		  selectedUser: null 
-		};
-	  }
-	
-	render() {
 	return (
 		<div>
 			<div className="list-group text-center">
@@ -247,17 +277,12 @@ class ContactsList extends React.Component {
 					name="Maria"
 					department="Wordpress Developer"
 				/>     
-				{this.state.selectedUser}
 			</div>
 		</div>
 	);
-  }
 }
 
 function ContactItem( { avatarLogin, name, department, selectedUser } ) {
-	this.setState({
-		selectedUser
-	  });
 
 	return (
 		<div className="item">
@@ -295,6 +320,7 @@ class App extends React.Component {
 				<SearchForm />
 				<ContactsList />
 				<ClickCounter />
+				<UserBox />
 			</div>
 		);
 	}
