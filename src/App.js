@@ -14,13 +14,13 @@ function AppHeader() {
 							<span className="icon-bar"></span>
 							<span className="icon-bar"></span>
 						</button>
-						<a className="navbar-brand" href="#">Contact List</a>
+						<a className="navbar-brand" href="navbar">Contact List</a>
 					</div>
 
 					<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul className="nav navbar-nav">
-							<li className="btn btn-default"><a href="#">Add<span className="sr-only">(current)</span></a></li>
-							<li className="btn btn-default"><a href="#">Link</a></li>
+							<li className="btn btn-default"><a href="button-adress">Add<span className="sr-only">(current)</span></a></li>
+							<li className="btn btn-default"><a href="button-adress">Link</a></li>
 						</ul>
 					</div>
 				</div>
@@ -35,7 +35,7 @@ class UserBox extends React.Component {
   
 	  this.state = {
 		filteredUsers: allUsers,
-		selectedUser: null // tutaj
+		selectedUser: null 
 	  };
 	}
   
@@ -43,7 +43,7 @@ class UserBox extends React.Component {
 	  return (
 		<div>
 		  {this.state.selectedUser}
-		  {/* … */}
+		  {}
 		</div>
 	  );
 	}
@@ -60,10 +60,10 @@ class UserBox extends React.Component {
 	render() {
 		return (
 		  <div>
-			{/* … */}
+			{}
 			<UsersList userSelected={this.onUserSelected} users={this.state.filteredUsers} />
 		  </div>
-		);
+		);					
 	  }
 
   }
@@ -108,10 +108,10 @@ class SearchForm extends React.Component {
 
 }
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users , userSelected }) => {
 	return (
 		<ul>
-			{users.map(user => <li key={user}>{user}</li>)}
+			<li onClick={userSelected.bind(null, users)} key={users}>{users}</li>)}
 		</ul>
 	);
 };
@@ -158,7 +158,7 @@ class Child extends React.Component {
 	}
 
 	componentWillReceiveProps = (addedProps) => {
-	  if (addedProps.value != this.state.parentNumbah) {
+	  if (addedProps.value !== this.state.parentNumbah) {
 		this.setState({
 			parentNumbah: Number(addedProps.value),
 			currentNumbah: Number(addedProps.value)
@@ -286,7 +286,7 @@ function ContactItem( { avatarLogin, name, department, selectedUser } ) {
 
 	return (
 		<div className="item">
-			<a href="#" className="list-group-item">
+			<a href="contact-link" className="list-group-item">
 				<UserAvatar login={avatarLogin} />
 				<h4>{name}</h4> 
 				<p>{department}</p>
@@ -306,7 +306,7 @@ function UserAvatar( { login } ) {
 
 	}
 	return (
-		<img src={imgUrl}/>
+		<img src={imgUrl} alt=""/>
 	);
 }
 
