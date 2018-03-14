@@ -87,7 +87,7 @@ class SearchForm extends React.Component {
 			).catch(err => console.log(err));
 	}	
 		
-	getFilteredUsersForText(text)  {
+	getFilteredUsersForText = (text)  => {
 		return new Promise(resolve => {
 		  const time = (Math.random() + 1) * 250;
 		  setTimeout(() => {
