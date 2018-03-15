@@ -29,6 +29,36 @@ function AppHeader() {
 	);
 }
 
+export class ContactsList extends React.Component {
+  contactToContactItem = contact => {
+    const avatarUrl = contact.picture.thumbnail;
+    const { title, first, last } = contact.name;
+    const name = `${title} ${first} ${last}`.trim();
+    const phone = contact.phone;
+    return <ContactItem key={key} avatarUrl={avatarUrl} name={name} phone={phone} />;
+  };
+
+  render() {
+    return (
+      <ul className="ui relaxed divided list selection">
+        {this.props.contacts.map(this.contactToContactItem)}
+      </ul>
+    );
+  }
+}
+
+export const ContactItem = ({ avatarUrl, name, phone }) => {
+	return (
+	  <li className="item">
+		<img src={avatarUrl} className="ui mini rounded image" alt="" />
+		<div className="content">
+		  <h4 className="header">{name}</h4>
+		  <div className="description">{phone}</div>
+		</div>
+	  </li>
+	);
+  };
+
 class UserBox extends React.Component {
 	constructor() {
 	  super();
@@ -311,6 +341,16 @@ function UserAvatar( { login } ) {
 }
 
 class App extends React.Component {
+	state = {
+		contacts: []
+	  };
+	
+	  componentDidMount() {
+		fetch("https://randomuser.me/api/?format=json&results=10")
+		  .then(res => res.json())
+		  .then(json => this.setState({ contacts: json.results }));
+	  }
+
 	render() {
 		return (
 			<div className="App">
@@ -321,6 +361,9 @@ class App extends React.Component {
 				<ContactsList />
 				<ClickCounter />
 				<UserBox />
+				<main className="ui main text container">
+          		<ContactsList contacts={this.state.contacts} />
+				</main>
 			</div>
 		);
 	}
