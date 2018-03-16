@@ -312,6 +312,20 @@ function ContactsList() {
 	);
 }
 
+class MyFirstForm extends React.Component {
+  state = {value: 'blue'}
+
+  render() {
+    return (
+      <select value={this.state.value} onChange={this.handleChange}>
+        <option value="red">Czerwony</option>
+        <option value="blue">Niebieski</option>
+        <option value="green">Zielony</option>
+      </select>
+    );
+  }
+}
+
 function ContactItem( { avatarLogin, name, department, selectedUser } ) {
 
 	return (
