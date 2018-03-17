@@ -313,15 +313,48 @@ function ContactsList() {
 }
 
 class MyFirstForm extends React.Component {
-  state = {value: 'blue'}
+  state = {
+    name: '',
+    color: 'blue',
+    message: '',
+    isChecked: true,
+  };
+
+  handleNameChange = (e) => {
+    this.setState({
+      name: e.target.value
+    });
+  }
+  handleColorChange = (e) => {
+    this.setState({
+      color: e.target.value
+    });
+  }
+  handleMessageChange = (e) => {
+    this.setState({
+      message: e.target.value
+    });
+  }
+  handleCheckboxChange = (e) => {
+    this.setState({
+      isChecked: e.target.checked
+    });
+  }
 
   render() {
     return (
-      <select value={this.state.value} onChange={this.handleChange}>
-        <option value="red">Czerwony</option>
-        <option value="blue">Niebieski</option>
-        <option value="green">Zielony</option>
-      </select>
+      <div>
+        <input value={this.state.name} onChange={this.handleNameChange} />
+        <select value={this.state.color} onChange={this.handleColorChange}>
+          <option value="red">Czerwony</option>
+          <option value="blue">Niebieski</option>
+          <option value="green">Zielony</option>
+        </select>
+        <textarea value={this.state.message} onChange={this.handleMessageChange} />
+        <label>
+          <input type="checkbox" checked={this.state.isChecked} onChange={this.handleCheckboxChange} />
+        </label>
+      </div>
     );
   }
 }
