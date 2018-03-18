@@ -29,25 +29,26 @@ function AppHeader() {
 	);
 }
 
-export class ContactsList extends React.Component {
-  contactToContactItem = contact => {
+export class ContactsArray extends React.Component {
+  contactToContactItems = contact => {
     const avatarUrl = contact.picture.thumbnail;
     const { title, first, last } = contact.name;
     const name = `${title} ${first} ${last}`.trim();
-    const phone = contact.phone;
-    return <ContactItem key={key} avatarUrl={avatarUrl} name={name} phone={phone} />;
+		const phone = contact.phone;
+		const key = '';
+  	return <ContactItems key={key} avatarUrl={avatarUrl} name={name} phone={phone} />;
   };
 
   render() {
     return (
       <ul className="ui relaxed divided list selection">
-        {this.props.contacts.map(this.contactToContactItem)}
+        {this.props.contacts.map(this.contactToContactItems)}
       </ul>
     );
   }
 }
 
-export const ContactItem = ({ avatarUrl, name, phone }) => {
+export const ContactItems = ({ avatarUrl, name, phone }) => {
 	return (
 	  <li className="item">
 		<img src={avatarUrl} className="ui mini rounded image" alt="" />
@@ -409,7 +410,7 @@ class App extends React.Component {
 				<ClickCounter />
 				<UserBox />
 				<main className="ui main text container">
-          		<ContactsList contacts={this.state.contacts} />
+          		<ContactsArray contacts={this.state.contacts} />
 				</main>
 			</div>
 		);
