@@ -29,6 +29,28 @@ function AppHeader() {
 	);
 }
 
+class MySecondForm extends React.Component {
+  render() {
+    return (
+      <form onSubmit={this.submitForm}>
+        <label>
+          <input
+            type="file"
+            ref={input => this.fileInput = input}
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+  
+  submitForm = (e) => {
+    e.preventDefault();
+    alert(this.fileInput.files[0].name);
+  }
+}
+
+
 export class ContactsArray extends React.Component {
   contactToContactItems = contact => {
     const avatarUrl = contact.picture.thumbnail;
