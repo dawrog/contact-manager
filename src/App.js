@@ -164,7 +164,7 @@ class SearchForm extends React.Component {
 const UsersList = ({ users , userSelected }) => {
 	return (
 		<ul>
-			<li onClick={userSelected.bind(null, users)} key={users}>{users}</li>)}
+			<li onClick={userSelected} key={users}>{users}</li>)}
 		</ul>
 	);
 };
